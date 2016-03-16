@@ -7,14 +7,14 @@ from django.shortcuts import redirect
 
 
 class Customer(models.Model):
-    first_name = models.CharField(max_length=30, default="")
-    last_name = models.CharField(max_length=30, default="")
-    email = models.EmailField(max_length=254, default="")
-    telephone = models.CharField(max_length=11, default="")
-    house_num = models.CharField(max_length=3, null=True)
-    street_name = models.CharField(max_length=35, null=True)
-    city = models.CharField(max_length=20, null=True)
-    postcode = models.CharField(max_length=9, null=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=254)
+    telephone = models.CharField(max_length=11)
+    house_num = models.CharField(max_length=3)
+    street_name = models.CharField(max_length=35)
+    city = models.CharField(max_length=20)
+    postcode = models.CharField(max_length=9)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -64,8 +64,7 @@ class Invoice(models.Model):
     def __str__(self):
         return str(self.customer) + " " + str(self.issue_date)
 
-    ''''def get_absolute_url(self):
-        return redirect("invoice_detail", pk=invoice.pk)'''
+
 
 
 @receiver(m2m_changed, sender=Invoice.parts.through)
