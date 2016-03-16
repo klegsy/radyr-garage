@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <title>Invoice</title>
+        <link rel="stylesheet" href="{% static "css/invoice.css" %}">
+    </head>
+{% block content %}
+<div id="invoiceholder">
+
+  <div id="headerimage"></div>
+  <div id="invoice" class="effect2">
+
+    <div id="invoice-top">
+      <div class="logo"></div>
+      <div class="info">
+        <h2>Radyr Garage Ltd</h2>
+        <p> Radyr Train Station <br>
+            Station Road <br>
+            Cardiff <br>
+            CF1 58AA <br>
+        </p>
+      </div><!--End Info-->
+      <div class="title">
+        <h1>Invoice #00{{ invoice.id }}</h1>
+        <p>Issued: {{ invoice.issue_date }} <br>
+           Payment Due: {{ invoice.due_date }}
+        </p>
+      </div><!--End Title-->
+    </div><!--End InvoiceTop-->
+
+
+
+    <div id="invoice-mid">
+
+      <div class="clientlogo"></div>
+      <div class="info">
+        <h2>{{ invoice.customer.first_name }} {{ invoice.customer.last_name }}</h2>
+        <p> {{ invoice.customer.house_num }}<br>
+            {{ invoice.customer.street_name }}<br>
+            {{ invoice.customer.city }}<br>
+            {{ invoice.customer.postcode }}<br>
+        </p>
+      </div>
+    </div><!--End Invoice Mid-->
+
+    <div id="invoice-bot">
+
+      <div id="table">
+        <table>
+          <tr class="tabletitle">
+            <td class="item"><h2>Item Description</h2></td>
+            <td class="Rate"><h2>Price</h2></td>
+            <td class="quantity"><h2>Quantity</h2></td>
+          </tr>
+        {% for parts in invoice.parts.all %}
+          <tr class="service">
+            <td class="tableitem"><p class="itemtext">{{ parts.part_name }}</p></td>
+            <td class="tableitem"><p class="itemtext">{{ parts.part_price }}</p></td>
+            <td class="tableitem"><p class="itemtext">{{ parts.quantity }}</p></td>
+          </tr>
+        {% endfor %}
+        <tr class="service">
+            <td class="tableitem"><p class="itemtext">Labour</p></td>
+            <td class="tableitem"><p class="itemtext">65</p></td>
+            <td class="tableitem"><p class="itemtext">{{ invoice.labour_time}}</p></td>
+        </tr>
+          <tr class="tabletitle">
+            <td></td>
+            <td></td>
+            <td class="Rate"><h2>Total</h2></td>
+            <td class="payment"><h2>{{ invoice.total_price }}</h2></td>
+          </tr>
+
+        </table>
+      </div><!--End Table-->
+
+
+      <div id="legalcopy">
+        <p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.
+        </p>
+      </div>
+
+    </div><!--End InvoiceBot-->
+  </div><!--End Invoice-->
+</div><!-- End Invoice Holder-->
+
+{% endblock %}

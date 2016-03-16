@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Edit</title>
+</head>
+<body>
+    <form method="POST" class="invoice-form">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    <a href="{% url 'system:invoice_detail' pk=invoice.pk %}">View Invoice</a>
+</body>
+</html>
