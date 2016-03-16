@@ -19,10 +19,13 @@ class CustomerForm(forms.ModelForm):
 
         return data
 
-    def clean(self):
-        names = self.cleaned_data['first_name'] and self.cleaned_data['last_name']
-        if not names.isalpha():
-            raise forms.ValidationError("Names must be letters only")
+    '''def clean(self):
+        cleaned_data = super(CustomerForm, self).clean()
+        first = cleaned_data.get("first_name")
+        last = cleaned_data.get("last_name")
+
+        if not first.isalpha() and last.isalpha():
+            raise forms.ValidationError("Names must be letters only")'''
 
 
 class CustomerAdmin(admin.ModelAdmin):
