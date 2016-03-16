@@ -1,0 +1,30 @@
+.page-header {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #40e9ff;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 25pt;
+    text-decoration: none;
+}
+
+.row {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.customer-form, .customer-form textarea {
+    width: 100%;
+}
+
+
+.container{
+    padding-left: 20%
+}
